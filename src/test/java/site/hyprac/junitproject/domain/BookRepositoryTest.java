@@ -78,8 +78,38 @@ public class BookRepositoryTest {
         assertEquals(title, bookPS.getTitle());
         assertEquals(author, bookPS.getAuthor());
     } // 트랜잭션 종료 (저장된 데이터를 초기화함)
-    // 4. 책 수정
 
+    // 4. 책 수정
+    @Sql("classpath:db/tableInit.sql")
+    @Test
+    public void 책수정_test(){
+        // given
+        Long id = 1L;
+        String title = "junit5555555353";
+        String author = "hs12121212";
+        Book book = new Book(id,title,author);
+
+        // when 
+        Book bookPS = bookRepository.save(book);
+
+        // bookRepository.findAll().stream()
+        //     .forEach(b -> {
+        //         System.out.println(b.getId());
+        //         System.out.println(b.getTitle());
+        //         System.out.println(b.getAuthor());
+        //         System.out.println("==========================");
+        //         });
+
+                // System.out.println("bookps id: "+bookPS.getId());
+                // System.out.println("bookps title: "+bookPS.getTitle());
+                // System.out.println("bookps author: "+bookPS.getAuthor());
+                // System.out.println("==========================");        
+        // then 
+        assertEquals(id, bookPS.getId());
+        assertEquals(title, bookPS.getTitle());
+        assertEquals(author, bookPS.getAuthor());
+
+    }
     // 5. 책 삭제
     @Sql("classpath:db/tableInit.sql")
     @Test
